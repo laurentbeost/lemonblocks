@@ -112,5 +112,7 @@ void updateStatus(block *blockToUpdate)
         exit(1);
     }
     fgets(blockToUpdate->status, 1024, cmd);
+    // remove existing cr and lf characters from the status line
+    blockToUpdate->status[strcspn(blockToUpdate->status, "\r\n")] = 0;
     pclose(cmd);
 }
